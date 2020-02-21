@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>JavaScript 2/30</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+
+	<div class="clock">
+		<div class="clock-face">
+			<div class="hand hour-hand"></div>
+			<div class="hand min-hand"></div>
+			<div class="hand second-hand"></div>
+		</div>
+	</div>
+	
+	<script>
+		const secondHand = document.querySelector('.second-hand');
+		const minHand = document.querySelector('.min-hand');
+		const hourHand = document.querySelector('.hour-hand');
+
+		function setDate(){
+			const now = new Date();
+
+			const seconds = now.getSeconds();
+			const secondsDegrees = ((seconds /60) * 360) + 90; //Lay chỉ số rotate cho second-hand
+			secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+			secondHand.style.width = `30%`;
+			secondHand.style.height = `3px`;
+			secondHand.style.left = `20%`;
+
+			const mins = now.getMinutes();
+			const minsDegrees = ((mins / 60) *360) +90;
+			minHand.style.transform = `rotate(${minsDegrees}deg)`;
+			minHand.style.height = `5px`;
+
+			const hours = now.getHours();
+			const hoursDegrees = ((hours / 60) *360) +90;
+			hourHand.style.transform = `rotate(${hoursDegrees}deg)`;
+			// console.log(seconds);
+		}
+		setInterval(setDate,1000); //goi lai ham setDate sau 1000ms
+	</script>
+
+</body>
+</html>
